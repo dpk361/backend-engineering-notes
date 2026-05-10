@@ -33,7 +33,7 @@ public class UserController {
 
     * `@Controller`
     * `@ResponseBody`
-* Returns JSON directly
+* Return JSON directly
 
 ### @Controller
 
