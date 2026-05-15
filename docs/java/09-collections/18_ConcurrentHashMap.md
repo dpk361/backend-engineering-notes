@@ -55,7 +55,7 @@ nav_order: 18
 
 ### Core Structure
 
-```text id="chm_struct"
+```text
 Node<K,V>[] table
 ```
 

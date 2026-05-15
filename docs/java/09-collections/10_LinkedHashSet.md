@@ -127,7 +127,7 @@ Bucket[1] → 20
 
 ###  Insertion Order Preservation
 
-```java id="lhs_ex1"
+```java
 
 public static void main(String[] args) {
     LinkedHashSet<Integer> set = new LinkedHashSet<>();

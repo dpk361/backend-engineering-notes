@@ -40,7 +40,7 @@ nav_order: 11
 
 ### 1. Natural Ordering
 
-```java id="ss_ex1"
+```java
 public static void main(String[] args) {
     SortedSet<Integer> set = new TreeSet<>();
     set.add(30);

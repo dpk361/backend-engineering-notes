@@ -31,7 +31,7 @@ means:
 
 ## Example
 
-```java id="7tb7ur"
+```java
 @GetMapping("/{id}")
 public ResponseEntity<?> getUser(@PathVariable Long id) {
 
@@ -84,7 +84,7 @@ ResponseEntity<?>
 
 does NOT clearly communicate:
 
-```text id="c3qwrj"
+```text
 What does this API return?
 ```
 
@@ -115,7 +115,7 @@ inside the same method.
 
 This leads to:
 
-```text id="u39v7q"
+```text
 fat controllers
 ```
 
@@ -141,7 +141,7 @@ ResponseEntity<?>
 
 ## Example
 
-```java id="2vmq8s"
+```java
 @GetMapping("/{id}")
 public ResponseEntity<UserResponse> getUser(
         @PathVariable Long id) {
@@ -164,13 +164,13 @@ if (user == null)
 
 controllers usually:
 
-```text id="rjg9kt"
+```text
 throw exceptions
 ```
 
 and let:
 
-```text id="8msyl0"
+```text
 @RestControllerAdvice
 ```
 
@@ -182,7 +182,7 @@ handle them globally.
 
 # Controller
 
-```java id="2xagvq"
+```java
 @GetMapping("/{id}")
 public ResponseEntity<UserResponse> getUser(
         @PathVariable Long id) {
@@ -197,7 +197,7 @@ public ResponseEntity<UserResponse> getUser(
 
 # Service Layer
 
-```java id="sy6a4z"
+```java
 public UserResponse get(Long id) {
 
     User user = repository.findById(id)
@@ -212,7 +212,7 @@ public UserResponse get(Long id) {
 
 # Global Exception Handler
 
-```java id="kmjlwm"
+```java
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -304,7 +304,7 @@ There are valid use cases.
 
 The cleanest production-grade controllers usually look like this:
 
-```java id="k0y5vu"
+```java
 @GetMapping("/{id}")
 public ResponseEntity<UserResponse> get(
         @PathVariable Long id) {
@@ -323,13 +323,13 @@ No:
 
 Errors are handled separately via:
 
-```text id="4g4luw"
+```text
 @RestControllerAdvice
 ```
 
 This separation of concerns is considered:
 
-```text id="oysqur"
+```text
 production-grade REST architecture
 ```
 
@@ -373,7 +373,7 @@ inside normal business controllers.
 
 # Recommended Flow
 
-```text id="i11n96"
+```text
 Controller
     ↓
 Service

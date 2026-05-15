@@ -189,7 +189,7 @@ Problems:
 
 # ✅ Use Response DTOs
 
-```java id="6vch4q"
+```java
 public class UserResponse {
 
     private Long id;
@@ -203,7 +203,7 @@ public class UserResponse {
 
 Modern enterprise preference:
 
-```java id="ezbdjt"
+```java
 public record UserResponse(
         Long id,
         String name
@@ -222,13 +222,13 @@ Benefits:
 
 Spring uses:
 
-```text id="8v0z8n"
+```text
 Jackson ObjectMapper
 ```
 
 for:
 
-```text id="w9c3qz"
+```text
 Java Object → JSON
 ```
 
@@ -242,7 +242,7 @@ Java Object → JSON
 
 Hide sensitive fields.
 
-```java id="0vyzbi"
+```java
 @JsonIgnore
 private String password;
 ```
@@ -253,7 +253,7 @@ private String password;
 
 Rename fields.
 
-```java id="gkm3l3"
+```java
 @JsonProperty("user_name")
 private String userName;
 ```
@@ -276,7 +276,7 @@ Very common in production APIs.
 
 Date formatting.
 
-```java id="u4x3g7"
+```java
 @JsonFormat(pattern = "yyyy-MM-dd")
 private LocalDate dob;
 ```
@@ -291,7 +291,7 @@ One of the biggest industry debates.
 
 # Approach 1 — Plain REST Response
 
-```json id="vg5zqf"
+```json
 {
   "id": 1,
   "name": "Mohan"
@@ -309,7 +309,7 @@ Preferred by:
 
 Very common internally.
 
-```json id="k1hq2m"
+```json
 {
   "status": "success",
   "data": {
@@ -323,7 +323,7 @@ Very common internally.
 
 # Wrapper Class
 
-```java id="7yo04v"
+```java
 public class ApiResponse<T> {
 
     private String status;
@@ -350,7 +350,7 @@ Critical for scalability.
 
 # Standard Structure
 
-```json id="0dngc0"
+```json
 {
   "content": [],
   "page": 0,
@@ -364,7 +364,7 @@ Critical for scalability.
 
 # Spring Pageable
 
-```java id="hjlwmf"
+```java
 public Page<UserResponse> getUsers(Pageable pageable){}
 ```
 
@@ -393,7 +393,7 @@ Used for:
 
 # Example
 
-```java id="8o3i4r"
+```java
 @GetMapping("/download")
 public ResponseEntity<Resource> download() {
 
@@ -407,7 +407,7 @@ public ResponseEntity<Resource> download() {
 
 # Content-Disposition
 
-```http id="2h7o1i"
+```http
 Content-Disposition: attachment
 ```
 
@@ -427,7 +427,7 @@ Important for:
 
 # StreamingResponseBody
 
-```java id="t3e0f3"
+```java
 @GetMapping("/stream")
 public StreamingResponseBody stream() {
     return outputStream -> {
@@ -455,7 +455,7 @@ return ResponseEntity.noContent().build();
 
 Status:
 
-```http id="plbhdo"
+```http
 204 No Content
 ```
 
@@ -469,7 +469,7 @@ One of the most critical enterprise topics.
 
 # Recommended Error Structure
 
-```json id="24m8d0"
+```json
 {
   "timestamp": "2026-05-13T10:00:00",
   "status": 400,
@@ -496,7 +496,7 @@ Industry-grade APIs return field-level details.
 
 Example:
 
-```json id="1y0h7f"
+```json
 {
   "errors": {
     "email": "invalid email",
@@ -511,7 +511,7 @@ Example:
 
 Best practice:
 
-```java id="sx2a77"
+```java
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 }
@@ -543,13 +543,13 @@ Huge production concern.
 
 Prefer:
 
-```json id="n75qkk"
+```
 []
 ```
 
 instead of:
 
-```json id="g8q6de"
+```json
 null
 ```
 
@@ -567,9 +567,8 @@ Crucial in distributed systems.
 
 Use:
 
-```text id="jlwm6x"
-ISO-8601 UTC
-```
+
+> ISO-8601 UTC
 
 Example:
 
@@ -592,7 +591,7 @@ Example:
 
 Default:
 
-```json id="u7v0f0"
+```json
 {
   "status": "ACTIVE"
 }
@@ -619,7 +618,7 @@ Advanced REST concept.
 
 Example:
 
-```json id="jepm4r"
+```json
 {
   "id": 1,
   "links": {
@@ -649,19 +648,19 @@ Huge performance topic.
 
 # ETag Support
 
-```http id="6v19v6"
+```
 ETag: "abc123"
 ```
 
 Client sends:
 
-```http id="8f4ik7"
+```
 If-None-Match: "abc123"
 ```
 
 Server can return:
 
-```http id="s8nq4x"
+```http
 304 Not Modified
 ```
 
@@ -681,7 +680,7 @@ Crucial for large payloads.
 
 Common:
 
-```text id="m54z2s"
+```text
 gzip
 ```
 
@@ -713,7 +712,7 @@ Returning raw exception messages:
 
 Responses are:
 
-```text id="o9hgbx"
+```text
 public contracts
 ```
 
@@ -747,7 +746,7 @@ Internal APIs often include:
 
 # Example
 
-```json id="bxrk1r"
+```json
 {
   "traceId": "abc123",
   "data": {}
@@ -760,7 +759,7 @@ Internal APIs often include:
 
 Client controls format:
 
-```http id="qnl92h"
+```http
 Accept: application/json
 ```
 
@@ -829,7 +828,7 @@ Creates client-side complexity.
 
 Response handling is:
 
-```text id="qpsk6h"
+```text
 API contract engineering
 ```
 
@@ -866,7 +865,7 @@ Good response design improves:
 
 # 33. Recommended Enterprise Response Flow
 
-```text id="prvjlwm"
+```text
 Service Result
     ↓
 Mapper

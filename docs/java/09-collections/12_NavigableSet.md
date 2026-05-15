@@ -73,7 +73,7 @@ You now get:
 
 ### 1. Closest Element Methods
 
-```java id="nav_ex1"
+```java
 public static void main(String[] args) {
   NavigableSet<Integer> set = new TreeSet<>();
 
