@@ -1,7 +1,7 @@
 ---
 title: Java
 parent: Backend Engineering Notes
-nav_order: 2
+nav_order: 1
 ---
 
 # Java

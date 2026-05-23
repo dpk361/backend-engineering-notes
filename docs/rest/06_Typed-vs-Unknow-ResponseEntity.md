@@ -1,5 +1,5 @@
 ---
-title: ResponseEntity<?> vs ResponseEntity<T>
+title: ResponseEntity (unknow type vs Strong Typed)
 parent: Response Handling
 nav_order: 1
 ---
