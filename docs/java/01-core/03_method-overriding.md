@@ -1,10 +1,10 @@
 ---
 title: Method Overriding - Rules
-parent: Core
+parent: Core Concepts
 nav_order: 3
 ---
 
-# Method Overriding - Rules
+# Method Overriding—Rules
 
 **Method overriding** allows a subclass to provide a **specific implementation**
 of a method that is already defined in its superclass.

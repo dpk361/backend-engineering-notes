@@ -1,6 +1,6 @@
 ---
 title: static import
-parent: Core
+parent: Core Concepts
 nav_order: 1
 ---
 
