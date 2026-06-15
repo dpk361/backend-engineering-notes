@@ -63,12 +63,12 @@ session.save(customer);
 ❌ Avoid in new JPA code
 
 ### persist vs save (Summary)
-| Aspect	     | persist	 | save      |
-|-------------|----------|-----------|
-|Standard	| JPA      |	Hibernate|
-|Returns ID	|❌ No	|✅ Yes|
-|Portable|	✅ Yes|	❌ No|
-|Recommended|	✅	|❌|
+| Aspect	       | persist	   | save        |
+|---------------|------------|-------------|
+| Standard	     | JPA        | 	Hibernate  |
+| Returns ID	   | ❌ No	      | ✅ Yes       |
+| Portable      | 	✅ Yes     | 	❌ No       |
+| Recommended   | 	✅	        | ❌           |
 
 ---
 
