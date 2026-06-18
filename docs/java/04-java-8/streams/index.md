@@ -91,7 +91,7 @@ Without a terminal operation:
 ##  Intermediate Operations (return Stream)
 
 | Method       | Input                  | Output    | Use Case                   | Example                                   |
-| ------------ | ---------------------- | --------- | -------------------------- | ----------------------------------------- |
+|--------------|------------------------|-----------|----------------------------|-------------------------------------------|
 | `filter`     | Predicate              | Stream<T> | Select elements            | `p -> p.getAge() > 30`                    |
 | `map`        | Function               | Stream<R> | Transform data             | `Player::getName`                         |
 | `flatMap` 🚨 | Function<T, Stream<R>> | Stream<R> | Flatten nested collections | `team -> team.getPlayers().stream()`      |
@@ -105,7 +105,7 @@ Without a terminal operation:
 ## Terminal Operations (end the stream)
 
 | Method       | Output        | Use Case                 | Example                           |
-| ------------ | ------------- | ------------------------ | --------------------------------- |
+|--------------|---------------|--------------------------|-----------------------------------|
 | `toList()`   | List<T>       | Collect results          | `.toList()`                       |
 | `collect()`  | Any           | Custom collection/result | `Collectors.groupingBy(...)`      |
 | `forEach` ⚠️ | void          | Perform action           | `.forEach(System.out::println)`   |
@@ -125,7 +125,7 @@ Without a terminal operation:
 ### Basic Collectors
 
 | Method      | Output  | Use Case          | Example               |
-| ----------- | ------- | ----------------- | --------------------- |
+|-------------|---------|-------------------|-----------------------|
 | `toList()`  | List<T> | Collect to list   | `Collectors.toList()` |
 | `toSet()`   | Set<T>  | Remove duplicates | `Collectors.toSet()`  |
 | `joining()` | String  | Join strings      | `joining(", ")`       |
@@ -134,7 +134,7 @@ Without a terminal operation:
 ### Grouping & Aggregation
 
 | Method                    | Output              | Use Case               | Example                              |
-| ------------------------- | ------------------- | ---------------------- | ------------------------------------ |
+|---------------------------|---------------------|------------------------|--------------------------------------|
 | `groupingBy`              | Map<K, List<T>>     | Group data             | `groupingBy(Player::getRole)`        |
 | `groupingBy + counting`   | Map<K, Long>        | Count per group        | `groupingBy(role, counting())`       |
 | `groupingBy + mapping` 🚨 | Map<K, List<R>>     | Transform inside group | `mapping(Player::getName, toList())` |
@@ -144,7 +144,7 @@ Without a terminal operation:
 ### Advanced Collectors
 
 | Method                 | Output                | Use Case                  | Example                   |
-| ---------------------- | --------------------- | ------------------------- | ------------------------- |
+|------------------------|-----------------------|---------------------------|---------------------------|
 | `partitioningBy`       | Map<Boolean, List<T>> | Split into 2 groups       | `p -> p.getAge() > 35`    |
 | `collectingAndThen` 🚨 | Any                   | Post-process result       | `Optional::get`           |
 | `mapping` 🚨           | Collector             | Transform inside grouping | `mapping(name, toList())` |
@@ -157,7 +157,7 @@ Without a terminal operation:
 ## Key Patterns
 
 | Problem Type   | Pattern                   |
-| -------------- | ------------------------- |
+|----------------|---------------------------|
 | Nested list    | `flatMap`                 |
 | Filter data    | `filter`                  |
 | Transform data | `map`                     |
@@ -167,5 +167,114 @@ Without a terminal operation:
 | Boolean check  | `anyMatch()`              |
 | Top per group  | `groupingBy + maxBy`      |
 
+
+
+------------------------
+
+## Can a Stream be used twice?
+
+No. A Java Stream can be consumed only once.
+
+```java
+public static void main(String[] args) {
+    
+    List<String> names = List.of("A", "B", "C");
+
+    Stream<String> stream = names.stream();
+
+    stream.forEach(System.out::println);
+
+// Reusing the same stream
+    stream.count(); // Exception
+}
+```
+
+Output:
+
+```text
+java.lang.IllegalStateException: stream has already been operated upon or closed
+```
+
+---
+
+## Why?
+
+A Stream is not a collection that stores data.
+
+It is a pipeline of operations that processes data and gets consumed when a terminal operation is executed.
+
+Once a terminal operation is executed, the stream is closed.
+
+---
+
+## Example
+
+```java
+Stream<Integer> stream = Stream.of(1, 2, 3);
+
+long count = stream.count();   // OK
+
+long count2 = stream.count();  // IllegalStateException
+```
+
+---
+
+## Correct Approach
+
+Create a new stream whenever needed.
+
+```java
+List<Integer> numbers = List.of(1, 2, 3, 4);
+
+long total = numbers.stream().count();
+
+long evenCount =
+        numbers.stream()
+               .filter(n -> n % 2 == 0)
+               .count();
+```
+
+---
+
+## Using Supplier (Interview Favorite)
+
+```java
+public static void main(String[] args) {
+
+    Supplier<Stream<Integer>> supplier =
+            () -> Stream.of(1, 2, 3);
+
+    supplier.get().count();
+
+    supplier.get().forEach(System.out::println);
+}
+```
+
+Each call to `get()` creates a fresh stream.
+
+---
+
+## Multiple Operations on Same Result
+
+Instead of reusing a stream, collect the result first.
+
+```java
+public static void main(String[] args) {
+
+    List<Integer> result =
+            numbers.stream()
+                    .filter(n -> n > 2)
+                    .toList();
+
+    System.out.println(result.size());
+    System.out.println(result.contains(4));
+
+}
+```
+
+
+## Golden Rule
+
+"A Stream is a one-time-use pipeline. Once a terminal operation executes, the stream is closed and cannot be reused."
 
 

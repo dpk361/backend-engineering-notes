@@ -21,7 +21,7 @@ That’s why we have:
 
 > Design patterns are grouped / categorized based on what problem they primarily solve in software design.
 
----
+----------
 
 ### 1️⃣ Creational Patterns:
 > Who creates the object, when, and how?
