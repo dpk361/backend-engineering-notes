@@ -1,6 +1,6 @@
 ---
 title: Java-9
-parent: Java
+parent: Java Versions
 nav_order: 10
 ---
 

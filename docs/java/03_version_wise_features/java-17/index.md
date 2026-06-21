@@ -1,6 +1,6 @@
 ---
 title: Java-17
-parent: Java
+parent: Java Versions
 nav_order: 3
 ---
 
