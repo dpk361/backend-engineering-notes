@@ -1,7 +1,7 @@
 ---
 title: Java-8
 parent: Java Versions
-nav_order: 4
+nav_order: 8
 ---
 
 # Java 8 - Features / Enhancements

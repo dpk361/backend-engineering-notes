@@ -1,7 +1,7 @@
 ---
 title: Java-10
 parent: Java Versions
-nav_order: 11
+nav_order: 10
 ---
 
 # Java 10 - Features / Enhancements

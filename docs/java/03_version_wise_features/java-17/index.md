@@ -1,7 +1,7 @@
 ---
 title: Java-17
 parent: Java Versions
-nav_order: 3
+nav_order: 17
 ---
 
 # Java 17 (LTS)

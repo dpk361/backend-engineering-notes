@@ -1,7 +1,7 @@
 ---
 title: Java-9
 parent: Java Versions
-nav_order: 10
+nav_order: 9
 ---
 
 # Java 9 - Features / Enhancements
