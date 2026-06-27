@@ -12,7 +12,7 @@ This repository serves as:
 -  An interview reference
 
 👉 **Live site:**  
-https://mmedaram.github.io/backend-engineering-notes/
+https://dpk361.github.io/backend-engineering-notes/
 
 ---
 
