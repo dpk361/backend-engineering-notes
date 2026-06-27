@@ -2,7 +2,7 @@ A curated knowledge base of backend engineering concepts, written as **clear, co
 
 
 👉 **Live site:**  
-https://mmedaram.github.io/backend-engineering-notes/
+https://dpk361.github.io/backend-engineering-notes/
 
 ---
 
